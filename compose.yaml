@@ -27,4 +27,4 @@ services:
       - /mnt/user/appdata/weechat/cache:/home/user/.cache/weechat
 
       # DCC files awaiting your automation
-      - /mnt/user/Media/
+      - /mnt/user/media/library/chaptarr-import:/dcc
