@@ -1,0 +1,30 @@
+services:
+  weechat:
+    image: weechat/weechat:4.10.1
+    container_name: weechat
+    restart: unless-stopped
+
+    stdin_open: true
+    tty: true
+
+    ports:
+      # WeeChat relay for Glowing Bear.
+      # DO NOT forward this port on your UniFi router.
+      - "9001:9001"
+
+      # Public DCC ports.
+      # These MUST match the WeeChat xfer.port_range.
+      - "14000-14020:14000-14020"
+
+    volumes:
+      # WeeChat configuration
+      - /mnt/user/appdata/weechat/config:/home/user/.config/weechat
+
+      # WeeChat data, logs, scripts, etc.
+      - /mnt/user/appdata/weechat/data:/home/user/.local/share/weechat
+
+      # WeeChat cache
+      - /mnt/user/appdata/weechat/cache:/home/user/.cache/weechat
+
+      # DCC files awaiting your automation
+      - /mnt/user/Media/
